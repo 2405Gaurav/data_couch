@@ -1,0 +1,28 @@
+{
+  "name": "ai-code-vulnerability-analyzer",
+  "version": "1.0.0",
+  "description": "A reliable AI-powered code vulnerability analyzer using Node.js, Express, Inngest, and Google Gemini. Demonstrates asynchronous background workflows for serverless-safe AI processing.",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "ai",
+    "security",
+    "code-analysis",
+    "inngest",
+    "gemini",
+    "express",
+    "vulnerability"
+  ],
+  "author": "Training Lab Instructor",
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "inngest": "^3.34.0"
+  }
+}
