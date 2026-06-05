@@ -32,36 +32,36 @@ This application solves a real problem in AI-powered development: **serverless t
                            └──────────────────────────────────────────────────┘
 
     Client                  Express Server                     Inngest              Gemini AI
-      │                         │                               │                     │
-      │  POST /api/analyze      │                               │                     │
-      │  { code: "..." }        │                               │                     │
-      │ ──────────────────────> │                               │                     │
-      │                         │                               │                     │
-      │                         │  1. Validate request          │                     │
-      │                         │     (analysis.validator.js)  │                     │
-      │                         │                               │                     │
-      │                         │  2. Emit "code/analyze"      │                     │
-      │                         │     event (inngest.send())   │                     │
-      │                         │ ────────────────────────────> │                     │
-      │                         │                               │                     │
-      │  200 OK                 │                               │                     │
-      │  { success: true }      │                               │                     │
-      │ <────────────────────── │                               │                     │
-      │                         │                               │                     │
+      │                         │                               │                      │
+      │  POST /api/analyze      │                               │                      │
+      │  { code: "..." }        │                               │                      │
+      │ ──────────────────────> │                               │                      │
+      │                         │                               │                      │
+      │                         │  1. Validate request          │                      │
+      │                         │     (analysis.validator.js)   │                      │
+      │                         │                               │                      │
+      │                         │  2. Emit "code/analyze"       │                      │
+      │                         │     event (inngest.send())    │                      │
+      │                         │ ────────────────────────────> │                      │
+      │                         │                               │                      │
+      │  200 OK                 │                               │                      │
+      │  { success: true }      │                               │                      │
+      │ <────────────────────── │                               │                      │ 
+      │                         │                               │                      │
       │                         │                               │  3. Trigger          │
-      │                         │                               │     workflow          │
-      │                         │                               │     (analyze-code)    │
-      │                         │                               │                     │
+      │                         │                               │     workflow         │
+      │                         │                               │     (analyze-code)   │
+      │                         │                               │                      │
       │                         │                               │  4. Call Gemini      │
-      │                         │                               │     (gemini.service)  │
+      │                         │                               │     (gemini.service) │
       │                         │                               │ ───────────────────> │
-      │                         │                               │                     │
-      │                         │                               │  5. Security report │
+      │                         │                               │                      │
+      │                         │                               │  5. Security report  │
       │                         │                               │ <─────────────────── │
-      │                         │                               │                     │
+      │                         │                               │                      │
       │                         │                               │  6. Log findings     │
       │                         │                               │     (step.run)       │
-      │                         │                               │                     │
+      │                         │                               │                      │
 ```
 
 **Key Insight:** The client gets an immediate response. The AI analysis happens asynchronously in the background. This prevents HTTP timeout errors and makes the API feel fast.
