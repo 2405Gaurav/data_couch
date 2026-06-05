@@ -229,7 +229,7 @@ ls src/
 
 You should see: `config/  controllers/  middleware/  prompts/  routes/  services/  utils/  validators/  workflows/`
 
-[SCREENSHOT: Terminal showing `ls src/` output with all subdirectories listed]
+![Terminal showing ls src/ output with all subdirectories listed](lab_images/01-terminal-ls-src-output.png)
 
 ### Install Dependencies
 
@@ -247,7 +247,7 @@ This installs four dependencies:
 ls node_modules | grep -E "express|inngest|@google|dotenv"
 ```
 
-[SCREENSHOT: Terminal showing `npm install` completing with "added X packages"]
+![Terminal showing npm install completing with added packages](lab_images/02-npm-install-complete.png)
 
 ---
 
@@ -328,7 +328,7 @@ process.env.PORT             // → "3000"
 
 **For local Inngest development**, `INNGEST_EVENT_KEY=test` and `INNGEST_SIGNING_KEY=test` are fine. The local Inngest Dev Server does not validate these values.
 
-[SCREENSHOT: The `.env` file open in a text editor with the API key filled in (partially obscured for security)]
+![The .env file open in a text editor with the API key filled in (partially obscured for security)](lab_images/03-env-file-editor.png)
 
 ---
 
@@ -418,7 +418,7 @@ This is the **fail-fast principle**: crash immediately at startup rather than fa
 | `initializeGemini()` | `server.js` (once at startup) | Creates the client |
 | `getGeminiModel()` | `gemini.service.js` (per request) | Returns the model instance |
 
-[SCREENSHOT: The `initializeGemini()` function open in the editor, with the API key validation highlighted]
+![The initializeGemini() function open in the editor, with the API key validation highlighted](lab_images/03-env-file-editor.png)
 
 ---
 
@@ -459,7 +459,7 @@ When running locally, you'll start the **Inngest Dev Server** as a separate proc
 
 This is entirely local — no internet required.
 
-[SCREENSHOT: Inngest Dev Server UI in a browser showing the "code-analyzer" app connected]
+![Inngest Dev Server UI in a browser showing the "code-analyzer" app connected](lab_images/05-inngest-dashboard-functions.png)
 
 ---
 
@@ -553,7 +553,7 @@ Remember: Return ONLY the JSON object. No markdown. No explanation. No code fenc
 
 Due to what's called the **recency effect**, the last instruction in a prompt has disproportionate influence on the output. Restating the JSON requirement at the very end improves compliance.
 
-[SCREENSHOT: The `buildSecurityPrompt()` function in the editor with the schema section highlighted]
+![The buildSecurityPrompt() function in the editor with the schema section highlighted](lab_images/03-env-file-editor.png)
 
 > **Lab Exercise:** Before moving on, try modifying the prompt to add a 9th vulnerability category of your choice (e.g., "Path Traversal" or "CSRF"). Run the app later and see if Gemini detects it.
 
@@ -648,7 +648,7 @@ const merged = { ...defaults, ...report };
 
 `defaults` provides safe fallbacks. The spread of `report` then overrides them with Gemini's values. This guarantees the returned object always has all expected fields, even if Gemini omitted one.
 
-[SCREENSHOT: `gemini.service.js` open in editor with the `Promise.race()` section highlighted]
+![gemini.service.js open in editor with the Promise.race() section highlighted](lab_images/04-gemini-service-promise-race.png)
 
 ---
 
@@ -753,7 +753,7 @@ import "./workflows/analyze-code.workflow.js";
 
 This import has no named exports being used — it's imported purely for its **side effect**: when Node.js loads this module, `inngest.createFunction()` is called, which registers the workflow with the Inngest client. Without this import, the `serve()` middleware in `server.js` wouldn't know the workflow exists.
 
-[SCREENSHOT: Inngest Dev Server UI showing the "analyze-code" function registered under "Functions"]
+![Inngest Dev Server UI showing the "analyze-code" function registered under "Functions"](lab_images/05-inngest-dashboard-functions.png)
 
 ---
 
@@ -998,7 +998,7 @@ The error handler MUST be the last middleware registered. Express identifies err
 app.listen(PORT, () => { ... });
 ```
 
-[SCREENSHOT: Terminal showing the server startup banner with all endpoints listed]
+![Terminal showing the server startup banner with all endpoints listed](lab_images/06-server-startup-banner.png)
 
 ---
 
@@ -1031,7 +1031,7 @@ You should see:
 ============================================================
 ```
 
-[SCREENSHOT: Terminal 1 showing the full server startup output with all green checkmarks]
+![Terminal 1 showing the full server startup output with all green checkmarks](lab_images/06-server-startup-banner.png)
 
 ### Terminal 2: Start the Inngest Dev Server
 
@@ -1054,7 +1054,7 @@ Inngest Dev Server
 
 Open [http://localhost:8288](http://localhost:8288) in your browser to see the Inngest Dev Server dashboard.
 
-[SCREENSHOT: Inngest Dev Server dashboard in browser showing "1 function registered" and the "code-analyzer" app]
+![Inngest Dev Server dashboard in browser showing "1 function registered" and the "code-analyzer" app](lab_images/05-inngest-dashboard-functions.png)
 
 ### Sending a Test Request
 
@@ -1077,7 +1077,7 @@ You should receive an **immediate response** (< 200ms):
 }
 ```
 
-[SCREENSHOT: Terminal showing the curl command and the immediate JSON success response]
+![Terminal showing the curl command and the immediate JSON success response](lab_images/07-curl-test-response.png)
 
 ### Watching the Background Workflow Execute
 
@@ -1094,7 +1094,7 @@ Alternatively, watch Terminal 1 (your Express server logs). You'll see structure
 {"level":"info","message":"Security analysis results","riskLevel":"HIGH","summary":"...","findings":[...]}
 ```
 
-[SCREENSHOT: Terminal 1 showing the complete workflow execution logs with `riskLevel: "HIGH"` and findings visible]
+![Terminal 1 showing the complete workflow execution logs with riskLevel: "HIGH" and findings visible](lab_images/08-workflow-execution-logs.png)
 
 ### Viewing Results in the Inngest Dashboard
 
@@ -1104,7 +1104,7 @@ Navigate to [http://localhost:8288](http://localhost:8288) and click on the **"a
 - The return value of the workflow (the full JSON report from Gemini)
 - The event payload that triggered the workflow
 
-[SCREENSHOT: Inngest Dev Server dashboard showing the completed workflow run with all three steps (extract-code, analyze-with-gemini, log-findings) in green]
+![Inngest Dev Server dashboard showing the completed workflow run with all three steps (extract-code, analyze-with-gemini, log-findings) in green](lab_images/05-inngest-dashboard-functions.png)
 
 ### Testing Validation Errors
 
@@ -1141,7 +1141,7 @@ Expected response:
 }
 ```
 
-[SCREENSHOT: Terminal showing both validation error responses]
+![Terminal showing both validation error responses](lab_images/07-curl-test-response.png)
 
 ---
 
